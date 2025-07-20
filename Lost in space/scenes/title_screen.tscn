@@ -1,0 +1,174 @@
+[gd_scene load_steps=19 format=3 uid="uid://bva5gsory0h25"]
+
+[ext_resource type="Script" uid="uid://dplb0tgysihwn" path="res://scenes/title_screen.gd" id="1_3f13i"]
+[ext_resource type="Texture2D" uid="uid://b5x8yg3gy8ufi" path="res://pics/Title screen/Loading screen - BG.png" id="1_cwl7t"]
+[ext_resource type="Texture2D" uid="uid://d1tj3s37fcab7" path="res://pics/Title screen/Lost in Space.png" id="2_rdflp"]
+[ext_resource type="Texture2D" uid="uid://diyh4w7nlsl8o" path="res://pics/Title screen/Play - base.png" id="3_6qvbq"]
+[ext_resource type="Texture2D" uid="uid://dwf4ctlptc8xa" path="res://pics/Title screen/Play - click.png" id="4_cpxrj"]
+[ext_resource type="FontFile" uid="uid://fvwl7rilu2v8" path="res://fonts/Husky Stash.otf" id="4_frs5l"]
+[ext_resource type="Texture2D" uid="uid://b6frjyjfoy6oo" path="res://pics/Title screen/Play - hover.png" id="5_8d2iv"]
+[ext_resource type="Texture2D" uid="uid://b7b67rf5daqaj" path="res://pics/Title screen/Jukebox - base.png" id="6_lltc4"]
+[ext_resource type="Texture2D" uid="uid://sxv2wiqwyto0" path="res://pics/Title screen/Jukebox - click.png" id="7_kvvn2"]
+[ext_resource type="Texture2D" uid="uid://b8oxwp5em507k" path="res://pics/Title screen/Jukebox - hover.png" id="8_7xak0"]
+[ext_resource type="Texture2D" uid="uid://bhmimdet35xir" path="res://pics/Title screen/exit - base.png" id="10_ib7db"]
+[ext_resource type="Texture2D" uid="uid://onpu5nmnjyx2" path="res://pics/Title screen/exit - click.png" id="11_frs5l"]
+[ext_resource type="Texture2D" uid="uid://cl401oml2bjq7" path="res://pics/Title screen/exit - hover.png" id="12_mynnq"]
+[ext_resource type="FontFile" uid="uid://twp4ybrctqf6" path="res://fonts/CashewCream.ttf" id="14_mynnq"]
+
+[sub_resource type="Shader" id="Shader_nscxg"]
+code = "shader_type canvas_item;
+
+uniform float speed = .01;
+
+void vertex() {
+	UV.x += TIME * speed;
+	UV.y += TIME * speed;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6t8fb"]
+shader = SubResource("Shader_nscxg")
+shader_parameter/speed = 0.01
+
+[sub_resource type="LabelSettings" id="LabelSettings_mynnq"]
+font = ExtResource("4_frs5l")
+font_size = 200
+font_color = Color(1, 0.380392, 0, 1)
+outline_size = 30
+outline_color = Color(0.0627451, 0.0156863, 0.137255, 1)
+shadow_size = 55
+shadow_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_frs5l"]
+default_font = ExtResource("14_mynnq")
+default_font_size = 35
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(-209, 391)
+script = ExtResource("1_3f13i")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TransitionTexture" type="TextureRect" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0.0392157, 1)
+
+[node name="MainMenuBG" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_6t8fb")
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_cwl7t")
+
+[node name="MainMenu" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_rdflp")
+
+[node name="GameTitleShadow" type="Label" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05625
+anchor_top = 0.0527778
+anchor_right = 0.966667
+anchor_bottom = 0.601852
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lost in Space"
+label_settings = SubResource("LabelSettings_mynnq")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="GameTitle" type="Label" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0515625
+anchor_top = 0.0398148
+anchor_right = 0.961979
+anchor_bottom = 0.588889
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lost in Space"
+label_settings = SubResource("LabelSettings_mynnq")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="Play" type="TextureButton" parent="MainMenu"]
+layout_mode = 2
+offset_left = 798.0
+offset_top = 753.0
+offset_right = 1117.0
+offset_bottom = 868.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("3_6qvbq")
+texture_pressed = ExtResource("4_cpxrj")
+texture_hover = ExtResource("5_8d2iv")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Jukebox" type="TextureButton" parent="MainMenu"]
+layout_mode = 2
+offset_left = 1326.0
+offset_top = 895.0
+offset_right = 1786.0
+offset_bottom = 1009.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_lltc4")
+texture_pressed = ExtResource("7_kvvn2")
+texture_hover = ExtResource("8_7xak0")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="Exit" type="TextureButton" parent="MainMenu"]
+layout_mode = 2
+offset_left = 190.0
+offset_top = 900.0
+offset_right = 557.0
+offset_bottom = 986.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("10_ib7db")
+texture_pressed = ExtResource("11_frs5l")
+texture_hover = ExtResource("12_mynnq")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="ExitConfirmation" type="ConfirmationDialog" parent="MainMenu"]
+title = ""
+position = Vector2i(780, 480)
+size = Vector2i(500, 180)
+borderless = true
+theme = SubResource("Theme_frs5l")
+ok_button_text = "Yes"
+dialog_text = "              Do you really wish 
+              to leave the game ?"
+dialog_autowrap = true
+cancel_button_text = "No"
+
+[connection signal="pressed" from="MainMenu/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MainMenu/Jukebox" to="." method="_on_jukebox_pressed"]
+[connection signal="pressed" from="MainMenu/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="confirmed" from="MainMenu/ExitConfirmation" to="." method="_on_exit_confirmation_confirmed"]
